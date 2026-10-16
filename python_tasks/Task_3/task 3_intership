@@ -1,0 +1,667 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "40cd7239",
+   "metadata": {},
+   "source": [
+    "# Python Practice: 15 List, String, and Dictionary Questions\n",
+    "\n",
+    "This notebook contains solutions for all 15 questions. In Google Colab, run each cell using **Shift + Enter**, or choose **Runtime → Run all**.\n",
+    "\n",
+    "Each solution includes the code and a sample run with the expected output."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a9f7462e",
+   "metadata": {},
+   "source": [
+    "## Q1. Frequency of Each Word in a Sentence"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "05aeb7e3",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.123484Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.123354Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.130426Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.127705Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'python': 2, 'is': 2, 'easy': 1, 'and': 1, 'powerful': 1}\n"
+     ]
+    }
+   ],
+   "source": [
+    "sentence = \"python is easy and python is powerful\"\n",
+    "\n",
+    "word_frequency = {}\n",
+    "for word in sentence.split():\n",
+    "    word_frequency[word] = word_frequency.get(word, 0) + 1\n",
+    "\n",
+    "print(word_frequency)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e8825b0e",
+   "metadata": {},
+   "source": [
+    "## Q2. Frequency of Each Character in a Word"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "765fce03",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.131980Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.131867Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.135859Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.135307Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'b': 1, 'a': 3, 'n': 2}\n"
+     ]
+    }
+   ],
+   "source": [
+    "word = \"banana\"\n",
+    "\n",
+    "char_frequency = {}\n",
+    "for char in word:\n",
+    "    char_frequency[char] = char_frequency.get(char, 0) + 1\n",
+    "\n",
+    "print(char_frequency)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "681fc7b9",
+   "metadata": {},
+   "source": [
+    "## Q3. First Non-Repeating Character in a Word"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "5b7a53d2",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.139532Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.139412Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.143167Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.142637Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "w\n"
+     ]
+    }
+   ],
+   "source": [
+    "word = \"swiss\"\n",
+    "\n",
+    "char_frequency = {}\n",
+    "for char in word:\n",
+    "    char_frequency[char] = char_frequency.get(char, 0) + 1\n",
+    "\n",
+    "first_unique = None\n",
+    "for char in word:\n",
+    "    if char_frequency[char] == 1:\n",
+    "        first_unique = char\n",
+    "        break\n",
+    "\n",
+    "print(first_unique)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0d61744d",
+   "metadata": {},
+   "source": [
+    "## Q4. Check Whether Two Strings Are Anagrams"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "e59342d9",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.145686Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.145547Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.149939Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.149280Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "True\n"
+     ]
+    }
+   ],
+   "source": [
+    "s1 = \"listen\"\n",
+    "s2 = \"silent\"\n",
+    "\n",
+    "# Ignore spaces and letter case.\n",
+    "s1_clean = s1.replace(\" \", \"\").lower()\n",
+    "s2_clean = s2.replace(\" \", \"\").lower()\n",
+    "\n",
+    "print(sorted(s1_clean) == sorted(s2_clean))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5b432be8",
+   "metadata": {},
+   "source": [
+    "## Q5. First Repeating Character in a String"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "c7fc3c3c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.151935Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.151819Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.160859Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.159085Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "r\n"
+     ]
+    }
+   ],
+   "source": [
+    "word = \"programming\"\n",
+    "\n",
+    "seen = set()\n",
+    "first_repeating = None\n",
+    "\n",
+    "for char in word:\n",
+    "    if char in seen:\n",
+    "        first_repeating = char\n",
+    "        break\n",
+    "    seen.add(char)\n",
+    "\n",
+    "print(first_repeating)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "160a67ad",
+   "metadata": {},
+   "source": [
+    "## Q6. Move All Zeros to the End of a List"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "9b49c4d9",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.165270Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.165092Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.169144Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.168336Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[3, 1, 2, 4, 0, 0, 0]\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [0, 3, 0, 1, 2, 0, 4]\n",
+    "\n",
+    "non_zeros = [num for num in nums if num != 0]\n",
+    "zeros = [num for num in nums if num == 0]\n",
+    "result = non_zeros + zeros\n",
+    "\n",
+    "print(result)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "dabbc55f",
+   "metadata": {},
+   "source": [
+    "## Q7. Second Highest Distinct Number in a List"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "5f90e6cc",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.170360Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.170259Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.173731Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.173268Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "30\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [10, 20, 40, 30, 40, 20]\n",
+    "\n",
+    "distinct_nums = sorted(set(nums), reverse=True)\n",
+    "second_highest = distinct_nums[1] if len(distinct_nums) >= 2 else None\n",
+    "\n",
+    "print(second_highest)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6f934b07",
+   "metadata": {},
+   "source": [
+    "## Q8. Remove Duplicates Without Changing Original Order"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "29217c92",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.175632Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.175414Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.179428Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.178750Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[4, 2, 5, 7]\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [4, 2, 4, 5, 2, 7, 5]\n",
+    "\n",
+    "result = []\n",
+    "seen = set()\n",
+    "\n",
+    "for num in nums:\n",
+    "    if num not in seen:\n",
+    "        result.append(num)\n",
+    "        seen.add(num)\n",
+    "\n",
+    "print(result)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3f73c128",
+   "metadata": {},
+   "source": [
+    "## Q9. Find the Missing Number from 1 to N"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "979ed158",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.181279Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.181133Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.189602Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.188488Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [1, 2, 4, 5, 6]\n",
+    "N = 6\n",
+    "\n",
+    "expected_sum = N * (N + 1) // 2\n",
+    "missing_number = expected_sum - sum(nums)\n",
+    "\n",
+    "print(missing_number)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "78c3f858",
+   "metadata": {},
+   "source": [
+    "## Q10. Two Numbers Whose Sum Equals a Target"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "da7209cc",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.191161Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.190955Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.195991Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.194730Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[2, 7]\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [2, 7, 11, 15]\n",
+    "target = 9\n",
+    "\n",
+    "seen = []\n",
+    "pair = []\n",
+    "\n",
+    "# Scan the second element from left to right; choose the earliest\n",
+    "# earlier element that completes the target.\n",
+    "for num in nums:\n",
+    "    for earlier in seen:\n",
+    "        if earlier + num == target:\n",
+    "            pair = [earlier, num]\n",
+    "            break\n",
+    "    if pair:\n",
+    "        break\n",
+    "    seen.append(num)\n",
+    "\n",
+    "print(pair)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "726e8fcd",
+   "metadata": {},
+   "source": [
+    "## Q11. Number Closest to Zero"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "cfee237c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.200109Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.199984Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.207687Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.203832Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [-8, -3, 2, 5, -2]\n",
+    "\n",
+    "# On a tie, the positive number wins.\n",
+    "closest = min(nums, key=lambda num: (abs(num), -num))\n",
+    "\n",
+    "print(closest)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fcff958a",
+   "metadata": {},
+   "source": [
+    "## Q12. Common Elements Between Two Lists"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "9db7fa49",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.209080Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.208963Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.215111Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.213968Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[3, 4, 5]\n"
+     ]
+    }
+   ],
+   "source": [
+    "list1 = [1, 2, 3, 4, 5]\n",
+    "list2 = [3, 4, 5, 6, 7]\n",
+    "\n",
+    "list2_set = set(list2)\n",
+    "result = []\n",
+    "seen = set()\n",
+    "\n",
+    "for num in list1:\n",
+    "    if num in list2_set and num not in seen:\n",
+    "        result.append(num)\n",
+    "        seen.add(num)\n",
+    "\n",
+    "print(result)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3623a3e1",
+   "metadata": {},
+   "source": [
+    "## Q13. Rotate a List to the Right by K Positions"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "362a6cb1",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.216366Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.216260Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.221716Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.219547Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[4, 5, 1, 2, 3]\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [1, 2, 3, 4, 5]\n",
+    "K = 2\n",
+    "\n",
+    "if nums:\n",
+    "    K = K % len(nums)\n",
+    "    result = nums[-K:] + nums[:-K] if K != 0 else nums[:]\n",
+    "else:\n",
+    "    result = []\n",
+    "\n",
+    "print(result)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8bf42c0f",
+   "metadata": {},
+   "source": [
+    "## Q14. Maximum Sum of Two Consecutive Elements"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "bc682e33",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.226428Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.226292Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.230574Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.229975Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "14\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [4, 7, 2, 9, 5]\n",
+    "\n",
+    "max_sum = nums[0] + nums[1]\n",
+    "for i in range(1, len(nums) - 1):\n",
+    "    current_sum = nums[i] + nums[i + 1]\n",
+    "    if current_sum > max_sum:\n",
+    "        max_sum = current_sum\n",
+    "\n",
+    "print(max_sum)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c507881e",
+   "metadata": {},
+   "source": [
+    "## Q15. All Unique Pairs Whose Sum Equals a Target"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "a67f0b08",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-13T16:19:18.232535Z",
+     "iopub.status.busy": "2026-10-13T16:19:18.232254Z",
+     "iopub.status.idle": "2026-10-13T16:19:18.240239Z",
+     "shell.execute_reply": "2026-10-13T16:19:18.239574Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[1, 8], [2, 7], [4, 5]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [2, 4, 3, 5, 7, 8, 1]\n",
+    "target = 9\n",
+    "\n",
+    "pairs = set()\n",
+    "for i in range(len(nums)):\n",
+    "    for j in range(i + 1, len(nums)):\n",
+    "        if nums[i] + nums[j] == target:\n",
+    "            pair = tuple(sorted((nums[i], nums[j])))\n",
+    "            pairs.add(pair)\n",
+    "\n",
+    "result = [list(pair) for pair in sorted(pairs)]\n",
+    "print(result)"
+   ]
+  }
+ ],
+ "metadata": {
+  "colab": {
+   "name": "Python_Practice_15_Questions.ipynb",
+   "provenance": []
+  },
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
